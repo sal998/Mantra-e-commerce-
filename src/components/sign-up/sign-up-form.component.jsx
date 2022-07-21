@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -17,7 +17,6 @@ const defaultformFields = {
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultformFields);
   const { displayName, email, password, confirmPassword } = formFields;
-  console.log(formFields);
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +34,7 @@ const SignUpForm = () => {
       const userDocRef = await createUserDocumentFromAuth(response.user, {
         displayName,
       });
+
       setFormFields(defaultformFields);
       console.log(response, "in response");
     } catch (error) {
